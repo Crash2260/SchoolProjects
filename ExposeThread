@@ -1,0 +1,17 @@
+package opSysMultithread;
+
+public class ExposeThread {
+	
+	//Get list of numbers from string (remove spaces, break on comma)
+	
+	//Check vaild scores [-5,100)
+	
+	//Calc average
+	
+	//Calc stdDev
+	
+	//Check for outliers
+	
+	//Print 30 times
+	
+}

@@ -1,0 +1,15 @@
+package opSysMultithread;
+
+public class RevealThread {
+
+	//Break string on spaces
+	
+	//Check for beginning letter (B, F, M, L)
+	
+	//Age Calc (M=12, D=30) from current date.
+	
+	//Generate output
+	
+	//Print 30 times
+	
+}

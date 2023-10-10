@@ -1,0 +1,31 @@
+package opSysMultithread;
+
+public class GeneratorThread {
+
+	//Get list of numbers from string (remove spaces, break on comma)
+	
+	//Find Max and Min
+	
+	//Subtract set of numbers from Max -> NEW1
+	
+	//Subtract Min from set of numbers -> NEW2
+	
+	//Find duplicates, remove from NEW2
+	
+	//Append NEW2 to NEW1 -> M
+	
+	//Calc M mod26 -> N
+	
+	//Find corresponding alpha (a=0) -> P
+	
+	//Calc N mod10 -> Q
+	
+	//Find corresponding symbol (List = !@#45%8967) -> R
+	
+	//Make password (P0,R0,P1,R1,...)
+	
+	//Generate output
+	
+	//Print 40 times
+	
+}

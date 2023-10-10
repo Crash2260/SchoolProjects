@@ -1,0 +1,19 @@
+package opSysMultithread;
+
+public class LeadoffHitter {
+
+	public static void main(String[] args) {
+		
+		//Take in data set.
+		
+		//Split by new lines
+		
+		//Use * to set off trigger and find each section, stop on $.
+		
+		//Check for each section
+		
+		//Pass to threads
+		
+	}
+	
+}
