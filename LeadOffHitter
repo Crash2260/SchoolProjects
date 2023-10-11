@@ -1,19 +1,57 @@
 package opSysMultithread;
 
+import java.io.*;
+
 public class LeadoffHitter {
 
 	public static void main(String[] args) {
 		
 		//Take in data set.
-		
-		//Split by new lines
-		
-		//Use * to set off trigger and find each section, stop on $.
-		
-		//Check for each section
-		
-		//Pass to threads
-		
+        String filePath = "";
+
+        try{
+            //Open Readers
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            //Line for holding data
+            String dataLine;
+
+            while((dataLine = bufferedReader.readLine()) != null){
+                //Use * to set off trigger and find each section, stop on $.
+                String[] sections = dataLine.split("*|$");
+                for (String section : sections){
+                    //Trim whitespace
+                    section.trim();
+                    //Check for each section
+                    if(section.charAt(2) == "*"){
+                        //Strip delimiters and store in 3rd section
+                        String thirdSection = section.substring(2, section.length()-1);
+
+                    }else if(section.charAt(1) == "*"){
+                        //Strip delimiters and store in 2nd section
+                        String secondSection = section.substring(1, section.length()-1);
+
+                    }else if(section.charAt(0) == "*"){
+                        //Strip delimiters and store in 1st section
+                        String firstSection = section.substring(0, section.length()-1);
+
+                    } else {
+                        //Give Error
+                    }
+                }
+                //Pass each section to threads
+                //To thread 1
+                //To thread 2
+                //To thread 3
+                System.out.println(dataLine);
+            }
+            //Close readers
+            bufferedReader.close();
+            fileReader.close();
+
+        } catch(IOException e){
+            System.out.println("An error occured reading the line");
+        }		
 	}
-	
 }
