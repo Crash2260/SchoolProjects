@@ -1,12 +1,49 @@
 package opSysMultithread;
+import java.time.LocalDate;
 
-public class RevealThread {
+public class RevealThread (String rawData) {
+    String birthday = "Missing";
+    int month, day, year;
+    String firstName = "Missing";
+    String middleInit = "Missing";
+    String lastName = "Missing";
+//Break string on spaces
+    String[] spiltData = rawData.split(" ");
+	
+//Check for beginning letter (B, F, M, L)
+    for (String section : spiltData){
+        section.trim();
+        if(section.charAt[0] == B){
+            birthday = section.substring(0);
+            birthday = birthday.replaceAll("\\/-,","");
+            //Separate birthday into month, day, year
+            month = Integer.valueOf(birthday.substring(0,1));
+            day = Integer.valueOf(birthday.substring(2,3));
+            year = Integer.valueOf(birthday.substring(4));
 
-	//Break string on spaces
+            if(month > 12 || day > 31){
+                birthday = "invalid";
+            }
+        }
+        if(section.charAt[0] == F){
+            firstName = section.substring(0);
+        }
+        if(section.charAt[0] == M){
+            middleInit = section.substring(0);
+        }
+        if(section.charAt[0] == L){
+            lastName = section.substring(0);
+        }
+    }
+//Run check for missing sections
+    if()
 	
-	//Check for beginning letter (B, F, M, L)
-	
-	//Age Calc (M=12, D=30) from current date.
+//Age Calc (M=12, D=30) from current date.
+    //Get current date into int variables
+    LocalDate currentDate = LocalDate.now();
+    int currMonth = currentDate.getMonthValue();
+    int currDay = currentDate.getDayOfMonth();
+    int currYear = currentDate.getYear();
 	
 	//Generate output
 	
