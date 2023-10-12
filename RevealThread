@@ -1,52 +1,89 @@
 package opSysMultithread;
 import java.time.LocalDate;
 
-public class RevealThread (String rawData) {
-    String birthday = "Missing";
-    int month, day, year;
-    String firstName = "Missing";
-    String middleInit = "Missing";
-    String lastName = "Missing";
+//public class RevealThread extends Thread{
+public class RevealThread{
+    
+    public static void main(String[] args) {
+    	
+    	String rawData = "FMike LFisher MB B11322010";
+    	String birthday = "Missing";
+    	int month = 0;
+    	int day = 0;
+    	int year = 0;
+    	String firstName = "Missing";
+    	String middleInit = "Missing";
+    	String lastName = "Missing";
+    	
 //Break string on spaces
-    String[] spiltData = rawData.split(" ");
-	
+    	String[] splitData = rawData.split(" ");
+    	
 //Check for beginning letter (B, F, M, L)
-    for (String section : spiltData){
-        section.trim();
-        if(section.charAt[0] == B){
-            birthday = section.substring(0);
-            birthday = birthday.replaceAll("\\/-,","");
-            //Separate birthday into month, day, year
-            month = Integer.valueOf(birthday.substring(0,1));
-            day = Integer.valueOf(birthday.substring(2,3));
-            year = Integer.valueOf(birthday.substring(4));
-
-            if(month > 12 || day > 31){
-                birthday = "invalid";
-            }
-        }
-        if(section.charAt[0] == F){
-            firstName = section.substring(0);
-        }
-        if(section.charAt[0] == M){
-            middleInit = section.substring(0);
-        }
-        if(section.charAt[0] == L){
-            lastName = section.substring(0);
-        }
+    	for (String section : splitData){
+    		section.trim();
+    		if(section.charAt(0) == 'B'){
+    			birthday = section.substring(1);
+    			birthday = birthday.replaceAll("\\/-,","");
+    			//Separate birthday into month, day, year
+    			month = Integer.valueOf(birthday.substring(0,2));
+    			day = Integer.valueOf(birthday.substring(2,4));
+    			year = Integer.valueOf(birthday.substring(4));
+    			
+    			if(month > 12 || day > 31){
+    				birthday = "invalid";
+    			}
+    		}
+    		if(section.charAt(0) == 'F'){
+    			firstName = section.substring(1);
+    		}
+    		if(section.charAt(0) == 'M'){
+    			middleInit = section.substring(1);
+    		}
+    		if(section.charAt(0) == 'L'){
+    			lastName = section.substring(1);
+    		}
+    	}
+    	
+//Age Calc (under assumption of M=12, D=30, no leap years) from current date.
+    	//12 months * 30 days = 360 days.
+    	int totalDays = (year * 360) + (month * 30) + day;
+    	
+    	//Get current date into int variables
+    	LocalDate currentDate = LocalDate.now();
+    	int currMonth = currentDate.getMonthValue();
+    	int currDay = currentDate.getDayOfMonth();
+    	int currYear = currentDate.getYear();
+    	//Convert current date to days
+    	int currTotalDays = (currYear * 360) + (currMonth * 30) + currDay;
+    	
+    	//Subtract currDate from given date
+    	int age = currTotalDays - totalDays;
+    	
+    	//Convert back to age
+    	int yearTotal = 0;
+    	int monthTotal = 0;
+    	int dayTotal = 0;
+    	
+    	while(age > 0) {
+	    	if (age > 360) {
+	    		yearTotal++;
+	    		age -= 360;
+	    	} else if (age > 30) {
+	    		monthTotal++;
+	    		age -= 30;
+	    	} else {
+	    		dayTotal = age;
+	    		age = 0;
+	    	}
+    	}
+    	
+//Generate output
+    	if(birthday != "invalid") {
+    		System.out.printf("%d - %d = %d, %d - %d = %d, %d - %d = %d, ", currYear, year, yearTotal, currMonth, month, monthTotal, currDay, day, dayTotal);    		
+    	} else {
+    		System.out.print("Invalid");
+    	}
+    	//Print 30 times
+    		
     }
-//Run check for missing sections
-    if()
-	
-//Age Calc (M=12, D=30) from current date.
-    //Get current date into int variables
-    LocalDate currentDate = LocalDate.now();
-    int currMonth = currentDate.getMonthValue();
-    int currDay = currentDate.getDayOfMonth();
-    int currYear = currentDate.getYear();
-	
-	//Generate output
-	
-	//Print 30 times
-	
 }
