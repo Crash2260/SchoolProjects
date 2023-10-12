@@ -6,8 +6,9 @@ public class LeadoffHitter {
 
 	public static void main(String[] args) {
 		
+		
 		//Take in data set.
-        String filePath = "";
+        String filePath = "C:/Users/crash/OneDrive/Desktop/School Project/OperatingSystemsData.txt";
 
         try{
             //Open Readers
@@ -18,33 +19,40 @@ public class LeadoffHitter {
             String dataLine;
 
             while((dataLine = bufferedReader.readLine()) != null){
+            	String firstSection = "empty";
+            	String secondSection = "empty";
+            	String thirdSection = "empty";
                 //Use * to set off trigger and find each section, stop on $.
-                String[] sections = dataLine.split("*|$");
+                String[] sections = dataLine.split("\\$");
                 for (String section : sections){
-                    //Trim whitespace
-                    section.trim();
-                    //Check for each section
-                    if(section.charAt(2) == "*"){
-                        //Strip delimiters and store in 3rd section
-                        String thirdSection = section.substring(2, section.length()-1);
-
-                    }else if(section.charAt(1) == "*"){
-                        //Strip delimiters and store in 2nd section
-                        String secondSection = section.substring(1, section.length()-1);
-
-                    }else if(section.charAt(0) == "*"){
-                        //Strip delimiters and store in 1st section
-                        String firstSection = section.substring(0, section.length()-1);
-
-                    } else {
-                        //Give Error
-                    }
+                	if (section != "") {	
+	                    //Trim whitespace off ends and get rid of excess spaces in the middle
+	                    section = section.trim().replaceAll("\\s+", " ");
+	                    //Check for each section
+	                    if(section.charAt(2) == '*'){
+	                        //Strip delimiters and store in 3rd section
+	                        thirdSection = section.substring(3, section.length());
+	
+	                    }else if(section.charAt(1) == '*'){
+	                        //Strip delimiters and store in 2nd section
+	                        secondSection = section.substring(2, section.length());
+	
+	                    }else if(section.charAt(0) == '*'){
+	                        //Strip delimiters and store in 1st section
+	                        firstSection = section.substring(1, section.length());
+	
+	                    } else {
+	                        System.out.println("Invalid data format.");
+	                    }
+                	}
                 }
                 //Pass each section to threads
                 //To thread 1
+                System.out.println(firstSection);
                 //To thread 2
+                System.out.println(secondSection);
                 //To thread 3
-                System.out.println(dataLine);
+                System.out.println(thirdSection);
             }
             //Close readers
             bufferedReader.close();
@@ -52,6 +60,8 @@ public class LeadoffHitter {
 
         } catch(IOException e){
             System.out.println("An error occured reading the line");
-        }		
+            e.printStackTrace();
+        }
 	}
 }
+
